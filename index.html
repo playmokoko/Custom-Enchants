@@ -4,7 +4,12 @@
 <title>Mokoko Enchantment Café</title>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#f7eef4;--card:#fffafca6;--ink:#4b3552;--soft:#8a7391;--sage:#a8cdb5;--butter:#f8dc93;--peach:#f7bfae;--lilac:#d9c6ec;--line:#ecd9e6;--grad1:var(--lilac);--grad2:var(--peach);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+:root{
+  --bg:#f7eef4;--card:#fffafca6;--ink:#4b3552;--soft:#8a7391;--sage:#a8cdb5;--butter:#f8dc93;--peach:#f7bfae;--lilac:#d9c6ec;--line:#ecd9e6;
+  --c-exotic:#ec493e;--c-legendary:#f5a014;--c-cosmic:#9886e5;--c-divine:#2cc6e2;--c-celestial:#2ede89;--c-secret:#e972a5;
+  --grad1:var(--lilac);--grad2:var(--peach);
+  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)
+}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#2a2030;--card:#372a3f99;--ink:#f6e9f2;--soft:#c0a9c9;--line:#4b3a55;--lilac:#5b4472;--sage:#5c8a6f;--butter:#c9a54a;--peach:#c27f6c}}
 :root[data-theme="dark"]{--bg:#2a2030;--card:#372a3f99;--ink:#f6e9f2;--soft:#c0a9c9;--line:#4b3a55;--lilac:#5b4472;--sage:#5c8a6f;--butter:#c9a54a;--peach:#c27f6c}
 *{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
@@ -15,9 +20,9 @@ body{margin:0;color:var(--ink);font:400 16px/1.5 Nunito,system-ui,sans-serif}
 .b2{bottom:10%;right:20%;box-shadow:0 0 70vw 55vw var(--grad2)}
 .wrap{max-width:1100px;margin:0 auto;padding:0 18px 60px}
 header{text-align:center;padding:34px 0 10px}
-h1{font:600 clamp(2.2rem,7vw,3.8rem)/1.1 Fredoka,sans-serif;margin:8px 0 6px;letter-spacing:.5px;background:linear-gradient(90deg,#9b72d1,#e0679a,#e0a02e,#5fae86,#9b72d1);background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 8s linear infinite}
+h1{font:600 clamp(2.2rem,7vw,3.8rem)/1.1 Fredoka,sans-serif;margin:8px 0 6px;letter-spacing:.5px;background:linear-gradient(90deg,#ec493e,#f5a014,#9886e5,#2cc6e2,#2ede89,#e972a5,#ec493e);background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 8s linear infinite}
 @keyframes shine{to{background-position:200% center}}
-header p{margin:0 auto;max-width:480px;color:var(--soft)}
+header p{margin:0 auto;max-width:520px;color:var(--soft)}
 .cat{width:min(300px,80%);display:block;margin:0 auto}
 .tail{transform-origin:20px 100px;animation:wag 3s ease-in-out infinite;cursor:pointer}
 @keyframes wag{50%{transform:rotate(-12deg)}}
@@ -25,30 +30,36 @@ header p{margin:0 auto;max-width:480px;color:var(--soft)}
 @keyframes fl{0%,100%{opacity:.2}50%{opacity:1}}
 @media (prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}}
 .bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--card);border-bottom:1px solid color-mix(in srgb,var(--line) 50%,transparent);padding:12px 0;margin-top:14px;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
-input{width:100%;padding:12px 18px;border-radius:30px;border:2px solid var(--line);background:var(--card);color:var(--ink);font:inherit;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.search-wrap{position:relative;display:flex;align-items:center}
+input[type="text"]{width:100%;padding:12px 42px 12px 18px;border-radius:30px;border:2px solid var(--line);background:var(--card);color:var(--ink);font:inherit;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
 input:focus,button:focus-visible,select:focus-visible{outline:3px solid var(--lilac);outline-offset:2px}
-.kb{position:absolute;right:25px;top:23px;font-size:.7rem;color:var(--soft);pointer-events:none;background:var(--line);padding:2px 8px;border-radius:8px;font-weight:700;transition:opacity .2s}
-input:focus + .kb, input:not(:placeholder-shown) + .kb {opacity:0}
+.kb{position:absolute;right:18px;font-size:.7rem;color:var(--soft);pointer-events:none;background:var(--line);padding:2px 8px;border-radius:8px;font-weight:700;transition:opacity .2s}
+.clr{position:absolute;right:12px;background:var(--line);border:none;color:var(--ink);width:26px;height:26px;border-radius:50%;padding:0;font-size:1rem;line-height:1;display:none;align-items:center;justify-content:center;cursor:pointer}
+.clr.show{display:flex}
+.clr.show + .kb, input:focus ~ .kb{opacity:0}
 .chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;align-items:center}
 button{font:600 .9rem Nunito;padding:7px 15px;border-radius:20px;border:2px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
 button.on{background:var(--sage);border-color:var(--sage);color:#1f2d25;box-shadow:0 0 16px var(--sage)}
 button[data-k="Favs"]{border-style:dashed}
-button[data-k="Favs"].on{background:#e0679a;border-color:#e0679a;color:#fff;box-shadow:0 0 16px rgba(224,103,154,.6);border-style:solid}
+button[data-k="Favs"].on{background:#e972a5;border-color:#e972a5;color:#fff;box-shadow:0 0 16px rgba(233,114,165,.6);border-style:solid}
 .controls{display:flex;justify-content:space-between;align-items:center;margin-top:12px;gap:10px;flex-wrap:wrap}
 .filters{display:flex;gap:8px;margin-left:auto}
 select{padding:7px 12px;border-radius:20px;border:2px solid var(--line);background:var(--card);color:var(--ink);font:inherit;cursor:pointer;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
 #count{color:var(--soft);margin:0 2px}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:26px 16px;padding-top:14px}
-.card{--ac:var(--sage);--pip:#5fae86;position:relative;background:var(--card);border:2px solid var(--ac);border-radius:22px;padding:18px 16px 14px;transition:transform .2s,box-shadow .2s;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.card{--ac:var(--c-exotic);--pip:var(--c-exotic);position:relative;background:var(--card);border:2px solid color-mix(in srgb,var(--ac) 75%,var(--line));border-radius:22px;padding:18px 16px 14px;transition:transform .2s,box-shadow .2s;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
 .card:hover{transform:translateY(-5px) rotate(-.6deg);box-shadow:0 12px 28px -8px var(--ac)}
-.card:focus-within{border-color:var(--lilac);box-shadow:0 0 0 2px var(--lilac)}
-.t2{--ac:var(--lilac);--pip:#9b72d1}.t3{--ac:var(--butter);--pip:#e0a02e}
-.t4{--ac:var(--peach);--pip:#e0679a;background:linear-gradient(160deg,var(--card),color-mix(in srgb,var(--peach) 28%,var(--card)))}
-.t4 h3{background:linear-gradient(90deg,#e0679a,#e89a4a);-webkit-background-clip:text;background-clip:text;color:transparent}
-.card:before,.card:after{content:"";position:absolute;top:-13px;width:0;height:0;border:12px solid transparent;border-bottom:16px solid var(--ac)}
+.card:focus-within{border-color:var(--ac);box-shadow:0 0 0 2px var(--ac)}
+.t1{--ac:var(--c-exotic);--pip:var(--c-exotic)}
+.t2{--ac:var(--c-legendary);--pip:var(--c-legendary)}
+.t3{--ac:var(--c-cosmic);--pip:var(--c-cosmic)}
+.t4{--ac:var(--c-divine);--pip:var(--c-divine)}
+.t5{--ac:var(--c-celestial);--pip:var(--c-celestial);background:linear-gradient(160deg,var(--card),color-mix(in srgb,var(--c-celestial) 14%,var(--card)))}
+.t6{--ac:var(--c-secret);--pip:var(--c-secret);background:linear-gradient(160deg,var(--card),color-mix(in srgb,var(--c-secret) 18%,var(--card)))}
+.card:before,.card:after{content:"";position:absolute;top:-13px;width:0;height:0;border:12px solid transparent;border-bottom:16px solid color-mix(in srgb,var(--ac) 75%,var(--line))}
 .card:before{left:20px;border-left-width:8px;border-right-width:16px}
 .card:after{right:20px;border-right-width:8px;border-left-width:16px}
-.card h3{font:600 1.15rem Fredoka;margin:0 0 4px;padding-right:24px}
+.card h3{font:600 1.15rem Fredoka;margin:0 0 4px;padding-right:24px;color:var(--pip)}
 .card p{margin:0 0 10px;font-size:.92rem;color:var(--soft)}
 .meter{display:flex;gap:3px;align-items:center;margin-bottom:9px}
 .meter i{width:13px;height:7px;border-radius:4px;background:color-mix(in srgb,var(--ink) 16%,transparent)}
@@ -57,20 +68,19 @@ select{padding:7px 12px;border-radius:20px;border:2px solid var(--line);backgrou
 .tags{display:flex;flex-wrap:wrap;gap:5px}
 .tags span{background:var(--lilac);border-radius:12px;padding:2px 10px;font-size:.78rem;font-weight:700}
 .tags span:not(.lv){cursor:pointer;transition:background .2s,transform .1s}
-.tags span:not(.lv):hover{background:#e0679a;color:#fff;transform:scale(1.05)}
+.tags span:not(.lv):hover{background:var(--pip);color:#1a1320;transform:scale(1.05)}
 .tags .lv{background:var(--butter);color:#4b3552}
 button.fav-btn{position:absolute;top:14px;right:12px;background:transparent;border:none;backdrop-filter:none;-webkit-backdrop-filter:none;padding:5px;font-size:1.3rem;line-height:1;color:color-mix(in srgb,var(--line) 80%,transparent);cursor:pointer;border-radius:50%;z-index:2;box-shadow:none}
 button.fav-btn:hover{transform:scale(1.2);background:transparent}
-button.fav-btn.on{background:transparent;border:none;box-shadow:none;color:#e0679a;filter:drop-shadow(0 2px 4px rgba(224,103,154,.4))}
-header .legend{margin-top:12px;font-size:.88rem}
+button.fav-btn.on{background:transparent;border:none;box-shadow:none;color:#e972a5;filter:drop-shadow(0 2px 4px rgba(233,114,165,.4))}
+header .legend{margin-top:12px;font-size:.9rem;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+header .legend b{padding:2px 10px;border-radius:12px;background:var(--card);border:1px solid color-mix(in srgb,currentColor 45%,transparent)}
 @keyframes rise{from{opacity:0;transform:translateY(25px) scale(.95)}to{opacity:1;transform:none}}
 @keyframes grow{from{transform:scaleX(0)}}
-@keyframes glow{50%{box-shadow:0 0 24px -2px var(--ac)}}
-@keyframes tw{50%{transform:scale(1.4) rotate(20deg);opacity:.5}}
+@keyframes glow{50%{box-shadow:0 0 22px -4px var(--ac)}}
 @keyframes breathe{50%{transform:scaleY(1.035)}}
 .card{animation:rise .5s backwards;animation-delay:calc(var(--i)*50ms)}
-.t4{animation:rise .5s backwards,glow 3s ease-in-out infinite;animation-delay:calc(var(--i)*50ms),0s}
-.t4 h3:after{content:"\2726";margin-left:6px;display:inline-block;animation:tw 1.6s ease-in-out infinite}
+.t5,.t6{animation:rise .5s backwards,glow 3s ease-in-out infinite;animation-delay:calc(var(--i)*50ms),0s}
 .meter i.f{transform-origin:left;animation:grow .5s backwards;animation-delay:calc(var(--i)*50ms + .2s)}
 .card:hover .meter i.f{animation:grow .5s backwards}
 .cat{transform-origin:50% 90%;animation:breathe 4s ease-in-out infinite}
@@ -81,9 +91,9 @@ button{transition:transform .15s,background .2s}button:hover{transform:translate
 .sub button.on{background:var(--lilac);border-color:var(--lilac);box-shadow:0 0 12px var(--lilac)}
 .catwrap{position:relative;width:min(300px,80%);margin:0 auto}
 .catwrap .cat{width:100%;margin:0;cursor:pointer;-webkit-tap-highlight-color:transparent}
-.catwrap:hover .cat{filter:drop-shadow(0 6px 10px rgba(224,103,154,.35))}
+.catwrap:hover .cat{filter:drop-shadow(0 6px 10px rgba(233,114,165,.35))}
 .cat,.cat:focus,.cat:active{outline:none;user-select:none;-webkit-user-select:none}
-.cat:focus-visible{filter:drop-shadow(0 0 8px #9b72d1)}
+.cat:focus-visible{filter:drop-shadow(0 0 8px #9886e5)}
 .eO{display:none}.bub{opacity:0;transition:opacity .2s}
 .awake .eC{display:none}.awake .eO{display:inline}.awake .bub{opacity:1}
 .awake .z{animation:none;opacity:0}.awake .tail{animation-duration:.5s}
@@ -92,7 +102,7 @@ button{transition:transform .15s,background .2s}button:hover{transform:translate
 .pupil{transition:r .3s, transform .1s}
 [data-theme="dark"] .awake .pupil{r:6.5px}
 .heart, .fish{position:absolute;pointer-events:none;font-size:22px;animation:up 1.5s ease-out both}
-.heart{color:#e0679a}
+.heart{color:#e972a5}
 @keyframes up{from{opacity:1;transform:translateY(0) scale(.6)}to{opacity:0;transform:translateY(-100px) scale(1.2)}}
 .pt{position:fixed;top:-30px;z-index:0;pointer-events:none;background:linear-gradient(135deg,#ffdce9,#f4a3c3);border-radius:150% 0 150% 0;box-shadow:0 0 6px rgba(244,163,195,.5);animation:petalFall linear infinite,petalSpin ease-in-out infinite alternate}
 @keyframes petalFall{0%{transform:translate(0,0);opacity:0}8%{opacity:.9}50%{transform:translate(calc(var(--sw)*-.6),55vh)}92%{opacity:.9}100%{transform:translate(var(--sw),108vh);opacity:0}}
@@ -101,13 +111,13 @@ button{transition:transform .15s,background .2s}button:hover{transform:translate
 .nav a{font:600 .9rem Nunito;padding:7px 16px;border-radius:20px;border:2px solid var(--line);background:var(--card);color:var(--ink);text-decoration:none}
 .nav a[aria-current]{background:var(--lilac);border-color:var(--lilac)}
 .card{cursor:pointer}
-dialog{--pip:#5fae86;border:2px solid var(--pip);border-radius:24px;background:var(--card);color:var(--ink);padding:0;width:min(440px,calc(100% - 32px));backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+dialog{--pip:#2ede89;border:2px solid var(--pip);border-radius:24px;background:var(--card);color:var(--ink);padding:0;width:min(440px,calc(100% - 32px));backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
 dialog[open]{animation:rise .3s}dialog::backdrop{background:rgba(40,25,50,.5);backdrop-filter:blur(5px)}
-.di{padding:22px}.dh{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}.dh h3{font:600 1.4rem Fredoka;margin:0;padding-right:10px}
+.di{padding:22px}.dh{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}.dh h3{font:600 1.4rem Fredoka;margin:0;padding-right:10px;color:var(--pip)}
 dialog p{color:var(--soft);margin:10px 0}dialog label{display:block;margin:16px 0 6px;font-weight:700}
 dialog input[type=range]{padding:0;border:0;accent-color:var(--pip)}
 dialog input[type=range]{backdrop-filter:none;-webkit-backdrop-filter:none}
-.lab{font:600 .85rem Fredoka;color:var(--pip)}
+.fmt-box{margin-top:12px;padding:10px 12px;border-radius:14px;background:color-mix(in srgb,var(--line) 45%,transparent);font-size:.85rem;color:var(--ink);word-break:break-word}
 footer{text-align:center;color:var(--soft);padding:40px 0 0}
 .empty{grid-column:1 / -1;text-align:center;padding:50px 20px;color:var(--soft);animation:rise .5s backwards;background:var(--card);border:2px dashed var(--line);border-radius:24px;backdrop-filter:blur(12px)}
 .empty .e-icon{font-size:4rem;margin-bottom:10px;display:inline-block;animation:breathe 3s ease-in-out infinite}
@@ -146,11 +156,21 @@ footer{text-align:center;color:var(--soft);padding:40px 0 0}
 </svg></div>
 <h1>Mokoko Enchantment Café</h1>
 <p>Every custom enchantment on the Mokoko server, curled up in one cozy menu. Pick a favorite and stay a while.</p>
-<p class="legend">Tiers show an enchant's max level: <b>Common</b> Lv 1-2, <b>Rare</b> Lv 3-4, <b>Epic</b> Lv 5-6, <b>Legendary</b> Lv 7+</p>
+<p class="legend">
+  <b style="color:var(--c-exotic)">Exotic</b>
+  <b style="color:var(--c-legendary)">Legendary</b>
+  <b style="color:var(--c-cosmic)">Cosmic</b>
+  <b style="color:var(--c-divine)">Divine</b>
+  <b style="color:var(--c-celestial)">Celestial</b>
+  <b style="color:var(--c-secret)">Secret</b>
+</p>
 </header>
-<div class="bar" style="position:relative">
-<input id="q" type="search" placeholder="Search enchantments or effects…" aria-label="Search">
-<div class="kb">/</div>
+<div class="bar">
+<div class="search-wrap">
+  <input id="q" type="text" placeholder="Search enchantments, tiers, or effects…" aria-label="Search" autocomplete="off">
+  <button id="clr" class="clr" type="button" aria-label="Clear search" title="Clear search">×</button>
+  <div class="kb">/</div>
+</div>
 <div class="chips" id="chips"></div>
 <div class="chips sub" id="sub"></div>
 <div class="controls">
@@ -158,10 +178,12 @@ footer{text-align:center;color:var(--soft);padding:40px 0 0}
 <div class="filters">
 <select id="tier" aria-label="Filter by Tier">
 <option value="all">All Tiers</option>
-<option value="1">Common (1-2)</option>
-<option value="2">Rare (3-4)</option>
-<option value="3">Epic (5-6)</option>
-<option value="4">Legendary (7+)</option>
+<option value="exotic">Exotic</option>
+<option value="legendary">Legendary</option>
+<option value="cosmic">Cosmic</option>
+<option value="divine">Divine</option>
+<option value="celestial">Celestial</option>
+<option value="secret">Secret</option>
 </select>
 <select id="sort" aria-label="Sort">
 <option value="n">A–Z</option>
@@ -173,250 +195,310 @@ footer{text-align:center;color:var(--soft);padding:40px 0 0}
 <div class="grid" id="grid"></div>
 <footer>Made with love for the Mokoko server</footer>
 </div>
-<dialog id="dlg"><div class="di"><div class="dh"><h3 id="dn"></h3><button id="dx" type="button">Close</button></div><div class="lab" id="dt"></div><p id="dd"></p><div class="tags" id="da"></div><label>Level <b id="lvn"></b><input type="range" id="lvr" min="1" value="1"></label><div class="meter" id="dm"></div><div class="chips"><button id="cp" type="button">Copy</button></div></div></dialog>
+<dialog id="dlg"><div class="di"><div class="dh"><h3 id="dn"></h3><button id="dx" type="button">Close</button></div><div class="lab" id="dt"></div><p id="dd"></p><div class="tags" id="da"></div><div class="fmt-box" id="df"></div><label>Level <b id="lvn"></b><input type="range" id="lvr" min="1" value="1"></label><div class="meter" id="dm"></div><div class="chips"><button id="cp" type="button">Copy</button></div></div></dialog>
 <button id="btt" type="button" title="Back to top" aria-label="Back to top">
 <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M18 15l-6-6-6 6"/></svg>
 </button>
 <script>
-const D=`Abyssal|Double damage to mobs in Nether.|3|Swords
-Amphibious|Breathe underwater.|1|Helmets
-Anchor|¢ cause no knockback to mobs.|3|Swords
-Angler's Edge|Get more exp from fishing.|3|Fishing Rod
-Aqualung|¢ regain air when mining under water.|2|Pickaxe
-Backfire|¢ explode enemy when hit by their arrows.|3|Chestplate
-Bastion|¢ gain Damage Resistance when defending.|2|Armor
-Beheading|¢ for an opponent's head to drop on death.|3|Swords, Axes
-Blastguard|¢ be immune to explosive damage, at higher levels you have a chance to heal.|3|Armor
-Blastoff|Blast off into the air at low HP.|3|Boots
-Blazing Hook|The hook ignites.|3|Fishing Rod
-Blight|¢ give your enemy mining fatigue.|2|Armor
-Bloodthirst|A chance to heal you for up to 3hp a few seconds after you strike.|3|Swords
-Bolstered|Reduces damage dealt to you.|4|Elytra
-Bolt|¢ call down lightning on the opponent.|3|Swords, Bow, Crossbow, Trident
-Bounce|Gives jump boost.|3|Boots
-Bowyer|Increases damage dealt with bows.|4|Bow
-Brimstone|Explosive fire effect.|3|Swords, Axes
-Catapult|Launch yourself by right-clicking.|3|Swords
-Chilled|Can cause slowness to attacker when defending.|3|Armor
-Clarity|¢ cure blindness and gain night vision when hit.|3|Armor
-Cogwork|Added speed when equipped.|3|Boots
-Collision|¢ double damage dealt.|4|Trident
-Colossal Blade|Multiplies damage against players who are wielding a Bow at the time they are hit.|5|Sword
-Combust|Set all mobs in radius on fire.|3|Swords
-Concussion|¢ push back your attacker when your health is low.|5|Chestplates
-Consume|¢ restore food while killing mobs.|3|Weapons
-Corrode|¢ deal extra durability damage to all enemy armor with every attack.|4|Swords
-Crystallize|¢ for an ore block to turn into its block.|1|Pickaxe
-Curious Mind|¢ increase EXP drops from mobs.|4|Swords
-Dazzle|A chance of causing blindness when attacking.|3|Swords
-Deadeye|Headshots with bows deal double damage.|5|Bow
-Deathless|¢ prevent your armor from taking durability damage.|4|Armor
-Decay|A chance to give the wither effect.|5|Armor
-Deepfreeze|¢ slow and bleed opponents.|5|Swords
-Deflection|¢ prevent enemy arrow from dealing damage.|4|Armor
-Detonating|¢ for arrows to detonate.|5|Bow
-Disarray|¢ prevent opponents guards from spawning.|3|Armor
-Discord|Increases Trident melee damage.|3|Trident
-Disrupt|¢ give your enemy mining fatigue.|2|Swords
-Douse|¢ extinguish yourself when on fire.|3|Leggings
-Duelist|¢ reduce incoming damage while wielding a sword by up to 22% at max level.|5|Armor
-Duplication|¢ multiply ore drops.|5|Pickaxe
-Ember Walker|Walk on Lava.|1|Boots
-Enduring|Weapons with this enchant become unbreakable.|1|Weapons
-Entangle|¢ slow and fatigue enemies with projectiles.|4|Bows
-Enthrall|Your attack pulls mobs towards you.|3|Swords
-Envenomed|¢ give poison to your attacker.|4|Armor
-Evade|¢ dodge physical enemy, chance increases when sneaking.|5|Armor
-Everlasting|Tools with this enchant become unbreakable.|1|Tools
-Excavate|¢ break in 3x3 area.|5|Pickaxes, Shovels
-Executioner|↑ Passive Mobs.|4|Swords, Axes
-Fade|A chance to give the wither effect.|5|Bow, Crossbow, Trident
-Famished|¢ regain hunger while fighting.|4|Swords, Axes
-Feralbane|↑ Hostile Mobs.|4|Swords, Axes
-Flare|Light opponents on fire.|3|Trident
-Fortified|¢ recover durability when damaged by players.|3|Armor
-Fortune|¢ increase luck while fishing.|3|Fishing Rod
-Fracture|¢ deal extra durability damage to all enemy armor with every attack.|4|Axes
-Frenzied|Chance of strength and mining fatigue.|5|Swords, Axes
-Glacier|A chance of causing the slowness effect on your enemy.|3|Swords
-Grandeur|Gives particles and sound effects.|3|Swords
-Graveblow|↑ Zombies.|5|Swords, Axes
-Gravity Well|Your attack pulls players towards you.|3|Swords
-Groundslam|Deal damage to nearby mobs when taking fall damage.|3|Boots
-Harpooner|¢ receive double fishing drops.|3|Fishing Rod
-Harvester of Souls|A chance to give your opponent the Wither and Blindness effects while dealing damage.|4|Axe
-Heavy Hand|¢ strike with great force.|4|Axes
-Hemorrhage|Make your opponent bleed.|6|Axes
-Hex|Gives a chance to deal weakness.|6|Armor
-Hollow|↑ Hostile Mobs.|4|Bow, Crossbow, Trident
-Ignite|Set all players in radius on fire.|3|Axes
-Inferno Bolt|Arrows turn into fireballs.|5|Bow
-Infernobane|↑ nether mobs.|5|Weapons
-Insight|¢ gain more experience from ores.|5|Tools
-Juggernaut|¢ decrease damage from enemy axes by 2% per level.|4|Armor
-Keen Hook|Deal damage with the hook.|9|Fishing Rod
-Laceration|Make your enemy bleed if hit using a melee attack.|4|Trident
-Leaden|Decreases damage from enemy bows by 2% per level.|5|Armor
-Leech|A chance to steal health when attacking.|5|Swords
-Lightfoot|¢ get a burst of haste.|3|Swords, Axes
-Lode Runner|Mine an entire ore vein.|3|Pickaxes
-Lumberjack|¢ break a tree in one hit.|3|Axes
-Luminous|Gives permanent night vision.|1|Helmet
-Magma|Chance of setting your attacker ablaze.|4|Armor
-Marksrider|Multiplies damage against players who are wielding a Sword at the time they are hit.|5|Bow, Crossbow, Trident
-Marrowbreaker|↑ Skeletons.|3|Swords, Axes
-Mayhem|Deal weakness and wither effects.|5|Trident
-Mend|¢ recover durability when damaged by mobs.|3|Armor
-Nano-Feed|¢ restore food every few seconds.|3|Helmets
-Nocturne|Deal more damage to mobs at night.|3|Swords
-Null-Gravity|¢ negate fall damage.|3|Boots
-Obsidian|Gives permanent fire resistance.|1|Armor
-Parry|A chance to negate an attack and deal up to 4 damage back.|3|Swords
-Phantom Step|When hit you have a chance to teleport directly behind your opponent.|8|Armor
-Plague|A chance of giving poison effect.|3|Bow, Crossbow, Trident
-Plated|Decreases damage from enemy swords by 2% per level.|4|Armor
-Profane|Defend with weakness and wither effects.|5|Armor
-Puncture|Inflicts more damage.|5|Bows
-Purify|A chance of removing bad potion effects.|4|Swords
-Quicken|¢ gain Haste after breaking blocks.|3|Tools
-Radius Strike|Damages mobs within a radius that increases with the level of enchant.|7|Swords, Axes
-Rally Call|Call your allies to your aid if you are in danger.|3|Goat horn
-Rampage|¢ for arrows to burst.|5|Crossbow
-Rampage Aura|¢ kill multiple monsters in radius.|5|Swords
-Rebuff|Absorb enemy damage and send it back.|5|Armor
-Recharge|¢ restore food while mining.|3|Pickaxes
-Recoup|Gain some health back after kills.|3|Weapons
-Redirect|Chance of poisoning opponent and gaining regeneration.|5|Armor
-Refine|¢ smelt mined blocks.|3|Pickaxes
-Regrower|Regrows crops when you break them.|1|Hoes
-Renew|Upon breaking, item has a chance to lose this enchantment and repair half of its durability.|4|Tools
-Repulsion|¢ push away your opponent.|5|Swords
-Retreat|¢ distance yourself from your enemies and gain regeneration.|4|Weapons
-Ricochet|Chance for arrows to bounce off you while holding item with this enchant.|6|Axe
-Rocket Arrow|Arrows turn into fireballs.|5|Crossbow
-Sap|¢ give your enemy mining fatigue.|1|Axes
-Scorch|↑ Spiders.|3|Swords, Axes
-Scramble|Disorganize opponent's hotbar.|3|Swords
-Scythe|¢ reap crops in 3x3 area.|3|Hoes
-Sentinels|A chance to spawn iron golems to assist you and watch over you.|10|Armor
-Seraphic|Heals when damaged.|5|Armor
-Shade Stalker|Freeze mobs at night.|3|Swords
-Sharpshooter|Increases damage dealt with Crossbows.|4|Crossbow
-Shield|A chance to absorb enemy damage.|4|Armor
-Sow|Sow seeds in a 3x3 area by shift+right-clicking.|3|Hoes
-Spook|¢ replace your opponents helmet to a pumpkin for a short time.|5|Weapons
-Sprint Charge|Chance of speed boost when taking off with elytra.|3|Elytra
-Stagger|¢ be pushed back when getting hit.|4|Armor
-Starvation|A chance to give your opponent the hunger effect.|4|Weapons
-Stormcaller|Strike monsters with lightning every 3 consecutive hits.|3|Weapons
-Stout|¢ receive less damage.|6|Chestplates
-Strip|Chance of unequipping random armor piece from your opponent.|8|Sword
-Stun|Gives lightning effect and a chance for slowness and slow swinging.|4|Swords, Axes
-Suppress|¢ disarm opponent.|2|Bow, Crossbow
-Sureaim|Headshots with tridents deal double damage.|5|Trident
-Sureshot|Greatly increases damage dealt to enemy players that have a bow in their hands.|4|Bow
-Surge|Unlocks additional hearts.|3|Armor
-Sweep|Damages players within a radius that increases with the level of enchant.|7|Axes
-Swiftness|Allows you to swing your tools faster.|3|Tools
-Taproot|Sow carrots in a 3x3 area by shift+right-clicking.|3|Hoes
-Tempered|Protects weapons and tools durability, items will take longer to break.|10|Weapons and tools
-Tether|Automatically retrieves the fishing rod when it gets a bite.|4|Fishing Rod
-Tide Strider|Walk on Water.|1|Boots
-Tinkerer|Repair your weapon in exchange for dealing less damage.|5|Axe
-Toxin|A chance of giving poison effect.|3|Swords, Axes
-Tracker|↑ Passive Mobs.|4|Bow, Crossbow, Trident
-Tremor|¢ throw your attackers into the air.|6|Boots
-Triton|Increases damage dealt with Tridents.|4|Trident
-Tuber Tuber|Sow potatoes in a 3x3 area by shift+right-clicking.|3|Hoes
-Twin Blow|A chance to strike twice.|3|Swords
-Twinfold|¢ multiply mob drops.|5|Swords
-Undertow|Deal double damage while in water.|4|Boots
-Unhinged|Strike lightning at nearby players.|3|Swords
-Vanish|¢ become invisible when low on health.|4|Armor
-Vanish Bomb|When you are near death, you will spawn a smoke bomb to distract your enemies.|8|Helmet
-Velocity|¢ gain speed boost with fireworks.|3|Elytra
-Venomous Hook|Poisons the hook.|3|Fishing Rod
-Verdict|Chance of poisoning opponent and gaining regeneration.|5|Elytra
-Vertigo|¢ give nausea effect.|4|Swords
-Vital Strike|Increase damage done with critical hit.|3|Swords
-Voidbane|Increases damage dealt to Enderman and Ender dragons.|5|Weapons
-Voidlord|Double damage to mobs in End.|3|Swords
-Voidstrike|¢ deal double damage while leaving enemy blind.|4|Weapons
-Volley|Rain arrows over opponent.|3|Bow
-Wardplate|¢ gain speed when taking fall damage.|3|Boots
-Warlord|¢ inflicts more axe damage.|4|Axes
-Wraiths|¢ spawn guard blazes.|10|Armor
-Wrest|¢ disarm opponent.|3|Swords
-Yank|Pull hit entity towards you.|3|Fishing Rod
-Zombie Decoy|When hit you have a chance to spawn zombie hordes to distract and disorient your opponents.|10|Boots`
-.split("\n").map(l=>{const [n,d,m,a]=l.split("|");return{n,d:d.split("¢ ").join("Chance to ").split("↑ ").join("Increases damage dealt to "),m:+m,a}});
-const TN=['','Common','Rare','Epic','Legendary'],tr=m=>m<=2?1:m<=4?2:m<=6?3:4;
-const F={All:/./,Melee:/sword|\baxe|weapons/i,Ranged:/bow|trident/i,Armor:/armor|helmet|chestplate|leggings|boots|elytra/i,Tools:/pickaxe|shovel|hoe|tools/i,Fishing:/fishing/i,Other:/goat/i};
-const S={Melee:[["Swords",/sword/i],["Axes",/\baxe/i],["(General)",/weapons/i]],Ranged:[["Bows",/\bbows?\b/i],["Crossbows",/crossbow/i],["Tridents",/trident/i]],Armor:[["Helmets",/helmet/i],["Chestplates",/chestplate/i],["Leggings",/leggings/i],["Boots",/boots/i],["Elytra",/elytra/i],["(General)",/\barmor/i]],Tools:[["Pickaxes",/pickaxe/i],["Shovels",/shovel/i],["Hoes",/hoe/i],["(General)",/\btools?\b/i]]};
-const C={Favs:['#e0679a','#9b72d1'],All:['var(--lilac)','var(--peach)'],Melee:['var(--peach)','var(--butter)'],Ranged:['var(--sage)','var(--lilac)'],Armor:['var(--butter)','var(--sage)'],Tools:['var(--soft)','var(--butter)'],Fishing:['var(--lilac)','var(--sage)'],Other:['var(--butter)','var(--peach)']};
+// Tiers: 1=Exotic, 2=Legendary, 3=Cosmic, 4=Divine, 5=Celestial, 6=Secret
+const D=`Abyssal|Deals double damage to Nether mobs.|3|Swords|5
+Amphibious|Lets you breathe underwater forever.|1|Helmets|2
+Anchor|Stops your attacks from knocking mobs back.|3|Swords|4
+Angler's Edge|Gives you extra XP from fishing.|3|Fishing Rod|4
+Aqualung|Refills your air bubbles while mining underwater.|2|Pickaxe|2
+Backfire|Makes enemies explode when they shoot you with arrows.|3|Chestplate|3
+Bastion|Gives you Resistance when you get hit.|2|Armor|5
+Beheading|Drops an enemy player's head when you kill them.|3|Swords, Axes|2
+Blastguard|Protects you from explosions and can heal you at higher levels.|3|Armor|5
+Blastoff|Launches you into the air to escape when your health is low.|3|Boots|4
+Blazing Hook|Sets enemies on fire when you hook them.|3|Fishing Rod|4
+Blight|Slows down your attacker's mining and attack speed.|2|Armor|4
+Bloodthirst|Heals you for up to 3 HP a few seconds after hitting an enemy.|3|Swords|4
+Bloodthirst|Steals health from enemies when you hit them with a mace.|2|Mace|3
+Bolstered|Reduces the damage you take while wearing an Elytra.|4|Elytra|5
+Bolt|Strikes your target with lightning.|3|Swords, Bow, Crossbow, Trident|2
+Bounce|Gives you permanent Jump Boost.|3|Boots|4
+Bowyer|Increases the damage of your bow shots.|4|Bow|5
+Brimstone|Sets your target on fire with a fiery blast.|3|Swords, Axes|4
+Catapult|Launches you into the air when you right-click.|3|Swords|3
+Chilled|Slows down enemies that hit you.|3|Armor|4
+Clarity|Cures Blindness and gives you Night Vision when hit.|3|Armor|3
+Cogwork|Gives you permanent Speed while wearing these boots.|3|Boots|3
+Collision|Doubles the damage of your thrown trident.|4|Trident|4
+Colossal Blade|Deals extra damage to players holding a bow.|5|Sword|4
+Combust|Sets all nearby mobs on fire.|3|Swords|5
+Concussion|Pushes attackers away when your health is low.|5|Chestplates|4
+Consume|Restores your hunger bar when you kill mobs.|3|Weapons|1
+Corrode|Damages all of your enemy's armor pieces with every hit.|4|Swords|5
+Crystallize|Turns mined ore blocks into full mineral blocks.|1|Pickaxe|6
+Curious Mind|Increases the XP dropped by mobs you kill.|4|Swords|3
+Dazzle|Blinds your enemy when you attack them.|3|Swords|4
+Deadeye|Deals double damage when you land a headshot with a bow.|5|Bow|5
+Deathless|Keeps your armor from losing durability when you take damage.|4|Armor|6
+Decay|Inflicts Wither on enemies that hit you.|5|Armor|4
+Deepfreeze|Slows down your enemy and makes them bleed.|5|Swords|5
+Deflection|Blocks incoming enemy arrows from hurting you.|4|Armor|5
+Detonating|Makes your arrows explode on impact.|5|Bow|1
+Disarray|Stops your enemy's guardian mobs from spawning.|3|Armor|3
+Discord|Increases your melee damage when hitting with a trident.|3|Trident|3
+Disrupt|Gives your enemy Mining Fatigue so they swing slower.|2|Swords|5
+Douse|Puts out fire on you when you start burning.|3|Leggings|4
+Duelist|Reduces damage taken by up to 22% while holding a sword.|5|Armor|5
+Duplication|Multiplies the ore drops you get when mining.|5|Pickaxe|6
+Ember Walker|Lets you walk across lava safely.|1|Boots|3
+Enduring|Makes your weapon completely unbreakable.|1|Weapons|3
+Entangle|Slows down enemies and their swing speed when shot.|4|Bows|4
+Enthrall|Pulls mobs toward you when you hit them.|3|Swords|4
+Envenomed|Poisons enemies that attack you.|4|Armor|4
+Evade|Dodges enemy attacks, with a higher chance while sneaking.|5|Armor|5
+Everlasting|Makes your tool completely unbreakable.|1|Tools|6
+Excavate|Breaks blocks in a 3x3 area at once.|5|Pickaxes, Shovels|5
+Executioner|Deals extra damage to passive animals and mobs.|4|Swords, Axes|1
+Fade|Inflicts Wither on targets you shoot.|5|Bow, Crossbow, Trident|1
+Famished|Refills your hunger bar while you fight.|4|Swords, Axes|1
+Feralbane|Deals extra damage to hostile monsters.|4|Swords, Axes|3
+Flare|Sets enemies on fire when hit with your trident.|3|Trident|4
+Fortified|Repairs your armor durability when hit by players.|3|Armor|3
+Fortune|Gives you Luck while fishing for better loot.|3|Fishing Rod|5
+Fracture|Damages all of your enemy's armor pieces with every axe hit.|4|Axes|5
+Frenzied|Gives you Strength and Mining Fatigue when attacking.|5|Swords, Axes|1
+Glacier|Slows down enemies when you hit them.|3|Swords|5
+Grandeur|Creates cool particles and sound effects when you attack.|3|Swords|2
+Graveblow|Deals extra damage to Zombies.|5|Swords, Axes|2
+Gravity Well|Pulls enemy players toward you when you hit them.|3|Swords|4
+Groundslam|Damages nearby mobs whenever you take fall damage.|3|Boots|5
+Harpooner|Doubles the items you catch while fishing.|3|Fishing Rod|3
+Harvester of Souls|Blinds and Withers enemies when you hit them.|4|Axe|4
+Heavy Hand|Hits with immense force, dealing extra damage.|4|Axes|4
+Hemorrhage|Makes your enemy bleed for damage over time.|6|Axes|5
+Hex|Weakens enemies that attack you.|6|Armor|4
+Hollow|Deals extra ranged damage to hostile monsters.|4|Bow, Crossbow, Trident|1
+Ignite|Sets all nearby enemy players on fire.|3|Axes|3
+Inferno Bolt|Turns your arrows into explosive fireballs.|5|Bow|5
+Infernobane|Deals extra damage to Nether mobs.|5|Weapons|4
+Insight|Gives you extra XP when mining ores.|5|Tools|2
+Juggernaut|Reduces damage taken from enemy axes by 2% per level.|4|Armor|5
+Keen Hook|Damages enemies when you hook them with your fishing rod.|9|Fishing Rod|5
+Laceration|Makes enemies bleed when hit with a melee trident attack.|4|Trident|3
+Leaden|Reduces damage taken from enemy bows by 2% per level.|5|Armor|5
+Leech|Steals health from enemies when you attack them.|5|Swords|3
+Lightfoot|Gives you a burst of Haste when attacking.|3|Swords, Axes|1
+Lode Runner|Mines an entire connected vein of ore at once.|3|Pickaxes|4
+Lumberjack|Chops down an entire tree in a single hit.|3|Axes|5
+Luminous|Gives you permanent Night Vision.|1|Helmet|2
+Magma|Sets enemies on fire when they hit you.|4|Armor|1
+Marksrider|Deals extra ranged damage to players holding a sword.|5|Bow, Crossbow, Trident|4
+Marrowbreaker|Deals extra damage to Skeletons.|3|Swords, Axes|2
+Mayhem|Inflicts Weakness and Wither when your trident hits.|5|Trident|3
+Mend|Repairs your armor durability when hit by mobs.|3|Armor|3
+Meteor|Creates an explosion on impact when hitting with a mace.|1|Mace|6
+Nano-Feed|Automatically restores your hunger every few seconds.|3|Helmets|5
+Nocturne|Deals extra damage to mobs during nighttime.|3|Swords|5
+Null-Gravity|Protects you from taking fall damage.|3|Boots|5
+Obsidian|Gives you permanent Fire Resistance.|1|Armor|5
+Parry|Blocks part of an attack and reflects up to 4 damage back.|3|Swords|5
+Phantom Step|Teleports you right behind your attacker when you get hit.|8|Armor|4
+Plague|Poisons targets hit by your shots.|3|Bow, Crossbow, Trident|1
+Plated|Reduces damage taken from enemy swords by 2% per level.|4|Armor|3
+Profane|Inflicts Weakness and Wither on enemies that hit you.|5|Armor|3
+Puncture|Deals extra arrow damage on hit.|5|Bows|5
+Purify|Clears negative potion effects from you while attacking.|4|Swords|5
+Quicken|Gives you a burst of Haste after breaking blocks.|3|Tools|2
+Radius Strike|Damages all mobs around you in a wide radius.|7|Swords, Axes|5
+Rally Call|Summons Iron Golems to protect you when you blow the horn.|3|Goat horn|5
+Rampage|Makes your crossbow bolts explode on impact.|5|Crossbow|1
+Rampage Aura|Instantly kills multiple nearby monsters at once.|5|Swords|3
+Rebuff|Blocks enemy damage and reflects it back at them.|5|Armor|1
+Recharge|Restores your hunger bar while mining.|3|Pickaxes|4
+Recoup|Heals you after killing a mob or player.|3|Weapons|3
+Redirect|Poisons your attacker and gives you Regeneration.|5|Armor|3
+Refine|Automatically smelts ores as you mine them.|3|Pickaxes|2
+Regrower|Automatically replants crops right after you harvest them.|1|Hoes|1
+Renew|Saves your tool from breaking and repairs half its durability, consuming this enchant.|4|Tools|6
+Repulsion|Pushes your enemy away when you hit them.|5|Swords|2
+Retreat|Pushes enemies back and gives you Regeneration.|4|Weapons|5
+Ricochet|Bounces incoming arrows off you while holding your axe.|6|Axe|5
+Rocket Arrow|Turns your crossbow bolts into fireballs.|5|Crossbow|4
+Sap|Slows down your enemy's mining and swing speed.|1|Axes|5
+Scorch|Deals extra damage to Spiders.|3|Swords, Axes|4
+Scramble|Mixes up your enemy's hotbar items when you hit them.|3|Swords|5
+Scythe|Harvests crops in a 3x3 area at once.|3|Hoes|5
+Sentinels|Spawns Iron Golems to defend you when you get attacked.|10|Armor|5
+Seraphic|Heals you when you take damage.|5|Armor|5
+Shade Stalker|Freezes mobs in place when hitting them at night.|3|Swords|4
+Sharpshooter|Increases the damage of your crossbow shots.|4|Crossbow|4
+Shatter|Damages and slows down enemies hit with your mace.|3|Mace|2
+Shield|Completely blocks damage from an enemy attack.|4|Armor|1
+Skullcrusher|Deals double damage and weakens enemies hit with your mace.|2|Mace|4
+Sow|Plants seeds in a 3x3 area when you shift + right-click.|3|Hoes|5
+Spook|Puts a pumpkin on your enemy's head for a short time.|5|Weapons|6
+Sprint Charge|Gives you a burst of Speed when taking off with an Elytra.|3|Elytra|6
+Stagger|Knocks your attacker backward when they hit you.|4|Armor|5
+Starvation|Drains your enemy's hunger bar when you hit them.|4|Weapons|1
+Stormcaller|Strikes monsters with lightning every 3 hits in a row.|3|Weapons|3
+Stout|Reduces the damage you take from attacks.|6|Chestplates|3
+Strip|Unequips a random piece of your enemy's armor.|8|Sword|3
+Stun|Strikes your enemy with lightning and slows their movement and swing speed.|4|Swords, Axes|4
+Suppress|Disarms your opponent when you shoot them.|2|Bow, Crossbow|6
+Sureaim|Deals double damage when you land a headshot with a trident.|5|Trident|3
+Sureshot|Deals heavy bonus damage to players holding a bow.|4|Bow|5
+Surge|Gives you extra permanent hearts while wearing this armor.|3|Armor|3
+Sweep|Damages all nearby enemy players around you.|7|Axes|5
+Swiftness|Gives you permanent Haste while holding this tool.|3|Tools|6
+Taproot|Plants carrots in a 3x3 area when you shift + right-click.|3|Hoes|5
+Tempered|Restores durability as you use your weapon or tool so it lasts longer.|10|Weapons and tools|4
+Tether|Automatically reels in your fishing rod as soon as a fish bites.|4|Fishing Rod|5
+Thunderclap|Strikes your target with lightning, with extra delayed strikes at higher levels.|3|Mace|6
+Tide Strider|Lets you walk on top of water.|1|Boots|3
+Tinkerer|Repairs your axe while attacking in exchange for dealing half damage.|5|Axe|3
+Toxin|Poisons your enemy when you hit them.|3|Swords, Axes|4
+Tracker|Deals extra ranged damage to passive animals.|4|Bow, Crossbow, Trident|1
+Tremor|Flings attackers high into the air when they hit you.|6|Boots|3
+Triton|Increases the damage of your thrown tridents.|4|Trident|4
+Tuber Tuber|Plants potatoes in a 3x3 area when you shift + right-click.|3|Hoes|5
+Twin Blow|Hits your enemy a second time right after your first strike.|3|Swords|3
+Twinfold|Doubles the items dropped when you kill mobs.|5|Swords|6
+Undertow|Deals double damage while you are fighting in water.|4|Boots|3
+Unhinged|Strikes all nearby enemy players with lightning.|3|Swords|3
+Vanish|Turns you invisible to escape when your health drops low.|4|Armor|5
+Vanish Bomb|Drops a blinding smoke cloud when you are near death.|8|Helmet|4
+Velocity|Gives you a Speed boost when using fireworks with an Elytra.|3|Elytra|4
+Venomous Hook|Poisons enemies when you hook them with your fishing rod.|3|Fishing Rod|4
+Verdict|Poisons your attacker and gives you Regeneration.|5|Elytra|3
+Vertigo|Makes your enemy dizzy with Nausea when you hit them.|4|Swords|5
+Vital Strike|Increases the damage of your critical hits.|3|Swords|4
+Voidbane|Deals extra damage to Endermen and the Ender Dragon.|5|Weapons|4
+Voidlord|Deals double damage to mobs in the End.|3|Swords|5
+Voidstrike|Deals double damage and blinds your enemy.|4|Weapons|6
+Volley|Rains a barrage of arrows down on your target.|3|Bow|5
+Wardplate|Gives you a burst of Speed when you take fall damage.|3|Boots|5
+Warlord|Deals heavy bonus damage when attacking with an axe.|4|Axes|3
+Windburst|Launches you upward after hitting an enemy to set up your next mace smash.|3|Mace|2
+Wraiths|Spawns Blaze guards to protect you when attacked.|10|Armor|5
+Wrest|Disarms your enemy when you hit them.|3|Swords|6
+Yank|Pulls hooked players toward you.|3|Fishing Rod|4
+Zombie Decoy|Spawns a horde of Zombies to distract attackers when you get hit.|10|Boots|4`
+.split("\n").map(l=>{const [n,d,m,a,t]=l.split("|");return{n,id:n+"_"+a,d,m:+m,a,t:+t}});
+
+const TN=['','Exotic','Legendary','Cosmic','Divine','Celestial','Secret'];
+const F={All:/./,Melee:/sword|\baxe|mace|weapons/i,Ranged:/bow|trident/i,Armor:/armor|helmet|chestplate|leggings|boots|elytra/i,Tools:/pickaxe|shovel|hoe|tools/i,Fishing:/fishing/i,Other:/goat/i};
+const S={Melee:[["Swords",/sword/i],["Axes",/\baxe/i],["Mace",/mace/i],["(General)",/weapons/i]],Ranged:[["Bows",/\bbows?\b/i],["Crossbows",/crossbow/i],["Tridents",/trident/i]],Armor:[["Helmets",/helmet/i],["Chestplates",/chestplate/i],["Leggings",/leggings/i],["Boots",/boots/i],["Elytra",/elytra/i],["(General)",/\barmor/i]],Tools:[["Pickaxes",/pickaxe/i],["Shovels",/shovel/i],["Hoes",/hoe/i],["(General)",/\btools?\b/i]]};
+const C={Favs:['#e972a5','#9886e5'],All:['var(--lilac)','var(--peach)'],Melee:['var(--peach)','var(--butter)'],Ranged:['var(--sage)','var(--lilac)'],Armor:['var(--butter)','var(--sage)'],Tools:['var(--soft)','var(--butter)'],Fishing:['var(--lilac)','var(--sage)'],Other:['var(--butter)','var(--peach)']};
 let cur="All",sub=null,shown=[];
 let favs = []; try { favs = JSON.parse(localStorage.getItem('mk-favs')||'[]'); } catch(e){}
 
-// Read Shareable Links (URL Params)
-const u = new URL(window.location);
-if(u.searchParams.has('cat')) cur = u.searchParams.get('cat');
-if(u.searchParams.has('q')) $("q").value = u.searchParams.get('q');
-if(u.searchParams.has('t')) $("tier").value = u.searchParams.get('t');
-
-const subOK=e=>{if(!sub)return true;const x=(S[cur]||[]).find(v=>v[0]==sub);if(!x)return true;return x[1].test(e.a);};
-function drawSub(){const l=S[cur]||[];$("sub").innerHTML=l.length>1?`<button data-s="" class="on">All</button>`+l.map(v=>`<button data-s="${v[0]}">${v[0]}</button>`).join(""):""}
 const $=id=>document.getElementById(id);
 const esc=t=>t.replace(/&/g,"&amp;").replace(/</g,"&lt;");
+const fmtLine=(e,v)=>`${e.n} (${e.a}) — ${e.d} [${TN[e.t]}, Max Level ${v}]`;
+
+// Read Shareable Links (URL Params) safely
+try {
+ const u = new URL(window.location);
+ if(u.searchParams.has('cat') && (F[u.searchParams.get('cat')] || u.searchParams.get('cat')==='Favs')) cur = u.searchParams.get('cat');
+ if(u.searchParams.has('q')) $("q").value = u.searchParams.get('q');
+ if(u.searchParams.has('t')){
+  const tv = u.searchParams.get('t').toLowerCase();
+  if(TN.some(x=>x && x.toLowerCase()===tv)) $("tier").value = tv;
+  else $("tier").value = "all";
+ }
+} catch(e){}
+
+const subOK=e=>{
+ if(!sub || !S[cur]) return true;
+ const x=S[cur].find(v=>v[0]===sub);
+ return x ? x[1].test(e.a) : true;
+};
+
+function drawSub(){
+ const l=S[cur]||[];
+ $("sub").innerHTML=l.length>1?`<button type="button" data-s="" class="${!sub?"on":""}">All</button>`+l.map(v=>`<button type="button" data-s="${v[0]}" class="${sub===v[0]?"on":""}">${v[0]}</button>`).join(""):"";
+}
 
 function buildChips(){
- $("chips").innerHTML= Object.keys(F).map(k=>`<button data-k="${k}" class="${cur==k?"on":""}">${k}</button>`).join("") +
- `<button data-k="Favs" class="${cur=="Favs"?"on":""}" style="margin-left:auto">Favorites</button>`;
+ $("chips").innerHTML= Object.keys(F).map(k=>`<button type="button" data-k="${k}" class="${cur==k?"on":""}">${k}</button>`).join("") +
+ `<button type="button" data-k="Favs" class="${cur=="Favs"?"on":""}" style="margin-left:auto">Favorites</button>`;
 }
 buildChips();
+drawSub();
 
 function updateURL(){
- const l = new URL(window.location);
- l.searchParams.set('cat', cur);
- if($("q").value) l.searchParams.set('q', $("q").value); else l.searchParams.delete('q');
- if($("tier").value !== 'all') l.searchParams.set('t', $("tier").value); else l.searchParams.delete('t');
- history.replaceState(null, '', l);
+ try {
+  if(window.location.protocol === 'file:') return;
+  const l = new URL(window.location);
+  l.searchParams.set('cat', cur);
+  if($("q").value) l.searchParams.set('q', $("q").value); else l.searchParams.delete('q');
+  if($("tier").value !== 'all') l.searchParams.set('t', $("tier").value); else l.searchParams.delete('t');
+  history.replaceState(null, '', l);
+ } catch(e){}
+}
+
+function resetAllFilters(){
+ cur = "All";
+ sub = null;
+ $("q").value = "";
+ $("tier").value = "all";
+ $("clr").classList.remove("show");
+ document.querySelectorAll("#chips button").forEach(b=>b.classList.toggle("on",b.dataset.k==="All"));
+ drawSub();
+ render();
 }
 
 function render(){
- const q=$("q").value.toLowerCase().trim(),s=$("sort").value,tier=$("tier").value;
+ const rawQ = $("q").value;
+ const q = rawQ.toLowerCase().trim(), s = $("sort").value, tier = $("tier").value;
+ $("clr").classList.toggle("show", rawQ.length > 0);
+
  let r=D.filter(e=>{
-  if(cur === 'Favs'){ if(!favs.includes(e.n)) return false; }
+  if(cur === 'Favs'){ if(!favs.includes(e.id) && !favs.includes(e.n)) return false; }
   else { if(!F[cur].test(e.a)||!subOK(e)) return false; }
-  if(tier!=='all'&&tr(e.m)!=tier) return false;
-  return (e.n+" "+e.d+" "+e.a).toLowerCase().includes(q);
+  if(tier!=='all' && TN[e.t].toLowerCase()!==tier) return false;
+  if(!q) return true;
+  return (e.n+" "+e.d+" "+e.a+" "+TN[e.t]).toLowerCase().includes(q);
  });
  r.sort((x,y)=>s=="m"?y.m-x.m||x.n.localeCompare(y.n):x.n.localeCompare(y.n));
  shown=r;
  if(!r.length){
   $("count").textContent="0 enchantments";
-  $("grid").innerHTML=`<div class="empty"><div class="e-icon">😿</div><h2>Meow... nothing found!</h2><p>Try searching for a different enchantment or clearing your filters.</p></div>`;
+  $("grid").innerHTML=`<div class="empty"><div class="e-icon">😿</div><h2>Meow... nothing found!</h2><p>Try searching for a different enchantment or clearing your filters.</p><button type="button" id="rst-btn" style="margin-top:12px">Reset All Filters</button></div>`;
+  const rb = $("rst-btn");
+  if(rb) rb.onclick = resetAllFilters;
   if(window.catSay && q) window.catSay("Meow... I can't find that!");
   updateURL(); return;
  }
  $("count").textContent=r.length+" of "+(cur==='Favs'?favs.length:D.length)+" enchantments";
  $("grid").innerHTML=r.map((e,n)=>{
-  const t=tr(e.m); const isF = favs.includes(e.n)?"on":"";
+  const t=e.t; const isF = (favs.includes(e.id)||favs.includes(e.n))?"on":"";
   return `<article class="card t${t}" data-k="${n}" tabindex="0" style="--i:${Math.min(n,16)}">
-  <button class="fav-btn ${isF}" aria-label="Favorite" data-n="${esc(e.n)}">❤</button>
+  <button type="button" class="fav-btn ${isF}" aria-label="Favorite" data-n="${esc(e.id)}">❤</button>
   <h3>${esc(e.n)}</h3><div class="meter" aria-hidden="true">${Array.from({length:10},(_,i)=>`<i class="${i<e.m?"f":""}"></i>`).join("")}<b>${TN[t]}</b></div><p>${esc(e.d)}</p><div class="tags"><span class="lv">Max Lv ${e.m}</span>${e.a.split(/, | and /).map(t=>`<span>${esc(t)}</span>`).join("")}</div></article>`}).join("");
  updateURL();
 }
 
 $("chips").addEventListener("click",e=>{
- const k=e.target.dataset.k;if(!k)return;cur=k;sub=null;drawSub();
+ const btn=e.target.closest("button");if(!btn)return;
+ const k=btn.dataset.k;if(!k)return;
+ cur=k;sub=null;drawSub();
  document.querySelectorAll("#chips button").forEach(b=>b.classList.toggle("on",b.dataset.k==k));
  document.documentElement.style.setProperty('--grad1',C[k][0]);document.documentElement.style.setProperty('--grad2',C[k][1]);
  document.querySelector('.b1').style.transform=`translate(${Math.random()*10-5}%,${Math.random()*10-5}%) scale(${1+Math.random()*.1})`;
  document.querySelector('.b2').style.transform=`translate(${Math.random()*10-5}%,${Math.random()*10-5}%) scale(${1+Math.random()*.1})`;
  render();
 });
-$("sub").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;sub=b.dataset.s||null;document.querySelectorAll("#sub button").forEach(x=>x.classList.toggle("on",x===b));render()});
-$("sort").addEventListener("change",render);$("tier").addEventListener("change",render);
+
+$("sub").addEventListener("click",e=>{
+ const b=e.target.closest("button");if(!b)return;
+ sub=b.dataset.s||null;
+ document.querySelectorAll("#sub button").forEach(x=>x.classList.toggle("on",x===b));
+ render();
+});
+
+$("sort").addEventListener("change",render);
+$("tier").addEventListener("change",render);
+$("clr").addEventListener("click",()=>{
+ $("q").value="";
+ $("q").focus();
+ render();
+});
 
 // Pro Keyboard Shortcuts
 document.addEventListener('keydown', e => {
@@ -519,7 +601,6 @@ function pet(m,shocked=false,fast=false){if(typeof m!="string")meow(shocked,fast
 const sn=$("sn"),sl=()=>sn.textContent=off?"Sound: off":"Sound: on";sl();sn.onclick=()=>{off=!off;try{localStorage.setItem("mk-sound",off?"0":"1")}catch(e){}sl();if(!off)meow()};
 window.catSay=pet;
 
-// Fix: Make entire SVG clickable for normal pet, intercept tail clicks for shocked pet
 $("c-tail").addEventListener("click",e=>{e.stopPropagation();pet("Hey! Not the tail!",true)});
 c.addEventListener("click",e=>{pet()});
 c.addEventListener("keydown",e=>{if(e.key=="Enter"||e.key==" "){e.preventDefault();pet()}});
@@ -530,7 +611,6 @@ document.addEventListener("mousemove",e=>{
     const r=c.getBoundingClientRect();
     const cx=r.left+r.width*0.6,cy=r.top+r.height*0.5;
     const dx = (e.clientX-cx)/80, dy = (e.clientY-cy)/80;
-    // Fix: Strict clamped values so eyes do not overlap the pink cheeks
     const ax=Math.max(-3,Math.min(3,dx));
     const ay=Math.max(-3,Math.min(1.5,dy)); 
     el.style.transform=`translate(${ax}px,${ay}px)`;
@@ -541,7 +621,7 @@ $("q").addEventListener("input",e=>{
  const val = $("q").value.toLowerCase().trim();
  if(val === "fish" || val === "treat"){
    pet("Nom nom nom! 🐟", false, true);
-   document.documentElement.style.setProperty('--grad1','#e0679a');document.documentElement.style.setProperty('--grad2','#5fae86');
+   document.documentElement.style.setProperty('--grad1','#e972a5');document.documentElement.style.setProperty('--grad2','#2ede89');
    setTimeout(()=>{document.documentElement.style.setProperty('--grad1',C[cur][0]);document.documentElement.style.setProperty('--grad2',C[cur][1]);}, 3500);
  } else {
    if(!c.classList.contains("awake") && val.length>0) pet("Looking for something?");
@@ -551,13 +631,33 @@ $("q").addEventListener("input",e=>{
 })();
 if(!matchMedia("(prefers-reduced-motion:reduce)").matches)for(let i=0;i<22;i++){const o=document.createElement("i");o.className="pt";const z=9+Math.random()*8;o.style.cssText=`left:${Math.random()*98}%;width:${z}px;height:${z*.8}px;--sw:${Math.random()*240-120}px;animation-duration:${12+Math.random()*10}s,${3+Math.random()*3}s;animation-delay:${-Math.random()*22}s,${-Math.random()*5}s`;document.body.appendChild(o)}
 (()=>{const r=document.documentElement,b=document.getElementById("tg");const dk=()=>r.dataset.theme?r.dataset.theme=="dark":matchMedia("(prefers-color-scheme:dark)").matches;const lab=()=>b.textContent=dk()?"Light mode":"Dark mode";try{const t=localStorage.getItem("mk-theme");if(t)r.dataset.theme=t}catch(e){}lab();b.onclick=()=>{r.dataset.theme=dk()?"light":"dark";try{localStorage.setItem("mk-theme",r.dataset.theme)}catch(e){}lab()}})();
-const dlg=$("dlg"),btt=$("btt");let cx;const PC=["","#5fae86","#9b72d1","#e0a02e","#e0679a"];
-function lv(){const v=+$("lvr").value;$("lvn").textContent=v+" / "+cx.m;$("dm").innerHTML=Array.from({length:10},(_,i)=>`<i class="${i<v?"f":""}"></i>`).join("")}
-function openD(x){cx=x;const t=tr(x.m);dlg.style.setProperty("--pip",PC[t]);$("dn").textContent=x.n;$("dt").textContent=TN[t]+" - max Lv "+x.m;$("dd").textContent=x.d;$("da").innerHTML=x.a.split(/, | and /).map(v=>`<span>${v.replace(/</g,"&lt;")}</span>`).join("");const g=$("lvr");g.max=x.m;g.value=x.m;g.disabled=x.m<2;lv();dlg.showModal()}
+const dlg=$("dlg"),btt=$("btt");let cx;
+const PC=["","#ec493e","#f5a014","#9886e5","#2cc6e2","#2ede89","#e972a5"];
+function lv(){
+ const v=+$("lvr").value;
+ $("lvn").textContent=v+" / "+cx.m;
+ $("dm").innerHTML=Array.from({length:10},(_,i)=>`<i class="${i<v?"f":""}"></i>`).join("");
+ $("df").textContent=`${cx.n} (${cx.a}) — ${cx.d} [${TN[cx.t]}, Max Level ${cx.m}]`;
+}
+function openD(x){
+ cx=x;const t=x.t;
+ dlg.style.setProperty("--pip",PC[t]);
+ $("dn").textContent=x.n;
+ $("dt").textContent=`[${TN[t]}, Max Level ${x.m}]`;
+ $("dd").textContent=x.d;
+ $("da").innerHTML=x.a.split(/, | and /).map(v=>`<span>${v.replace(/</g,"&lt;")}</span>`).join("");
+ const g=$("lvr");g.max=x.m;g.value=x.m;g.disabled=x.m<2;
+ lv();
+ dlg.showModal();
+}
 $("lvr").oninput=lv;$("dx").onclick=()=>dlg.close();dlg.onclick=e=>{if(e.target===dlg)dlg.close()};
 
-// Clean Minecraft copy format!
-$("cp").onclick=async()=>{try{await navigator.clipboard.writeText(`${cx.n} (Max Lv ${cx.m}) - ${cx.d} [${cx.a}]`);$("cp").textContent="Copied!";window.catSay&&catSay("Copied!")}catch(e){$("cp").textContent="Copy failed"}setTimeout(()=>$("cp").textContent="Copy",1500)};
+// Clean Minecraft copy format: Name (Applies To) — Description [Tier, Max Level X]
+$("cp").onclick=async()=>{
+ const txt=`${cx.n} (${cx.a}) — ${cx.d} [${TN[cx.t]}, Max Level ${cx.m}]`;
+ try{await navigator.clipboard.writeText(txt);$("cp").textContent="Copied!";window.catSay&&catSay("Copied!")}catch(e){$("cp").textContent="Copy failed"}
+ setTimeout(()=>$("cp").textContent="Copy",1500);
+};
 
 // Grid Event Delegation for Cards, Favs, and Tags
 $("grid").addEventListener("click",e=>{
@@ -572,14 +672,19 @@ $("grid").addEventListener("click",e=>{
  }
  const tag = e.target.closest(".tags span:not(.lv)");
  if(tag){
-   e.stopPropagation(); cur = "All"; drawSub(); $("q").value = tag.textContent;
-   document.querySelectorAll("#chips button").forEach(b=>b.classList.toggle("on",b.dataset.k==cur));
-   render(); window.scrollTo({top:0,behavior:'smooth'});
+   e.stopPropagation();
+   cur = "All";
+   sub = null;
+   drawSub();
+   $("q").value = tag.textContent;
+   document.querySelectorAll("#chips button").forEach(b=>b.classList.toggle("on",b.dataset.k===cur));
+   render();
+   window.scrollTo({top:0,behavior:'smooth'});
    return;
  }
- const c=e.target.closest(".card");if(c)openD(shown[+c.dataset.k]);
+ const c=e.target.closest(".card");if(c && shown[+c.dataset.k])openD(shown[+c.dataset.k]);
 });
-$("grid").addEventListener("keydown",e=>{if(e.key=="Enter"&&e.target.classList.contains("card"))openD(shown[+e.target.dataset.k])});
+$("grid").addEventListener("keydown",e=>{if(e.key=="Enter"&&e.target.classList.contains("card")&&shown[+e.target.dataset.k])openD(shown[+e.target.dataset.k])});
 window.addEventListener('scroll',()=>{if(window.scrollY>300)btt.classList.add('show');else btt.classList.remove('show')});
 btt.onclick=()=>window.scrollTo({top:0,behavior:'smooth'});
 if(cur!=="All"){document.documentElement.style.setProperty('--grad1',C[cur]?C[cur][0]:'var(--lilac)');document.documentElement.style.setProperty('--grad2',C[cur]?C[cur][1]:'var(--peach)');drawSub();}
