@@ -667,8 +667,13 @@ $("cp").onclick=async()=>{
 $("grid").addEventListener("click",e=>{
  const fbtn = e.target.closest(".fav-btn");
  if(fbtn){
-   e.stopPropagation(); const n = fbtn.dataset.n;
-   if(favs.includes(n)) favs = favs.filter(x=>x!==n); else favs.push(n);
+   e.stopPropagation(); 
+   const id = fbtn.dataset.n;
+   if(favs.includes(id)) {
+     favs = favs.filter(x => x !== id);
+   } else {
+     favs.push(id);
+   }
    try{localStorage.setItem('mk-favs', JSON.stringify(favs));}catch(err){}
    fbtn.classList.toggle('on');
    if(cur==='Favs') render();
