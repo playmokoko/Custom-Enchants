@@ -168,6 +168,18 @@ dialog::backdrop{background:rgba(10,3,18,.65)}
 #cat[data-cs="mummy"] .cs-m,#cat[data-cs="pump"] .cs-p,#cat[data-cs="skel"] .cs-s,#cat[data-cs="devil"] .cs-d{display:inline}
 #cat[data-cs="pump"] .pupil{fill:#2a1208}#cat[data-cs="pump"] .eC path{stroke:#2a1208}#cat[data-cs="pump"] path[stroke="#cdb8e8"]{stroke:#2a1208}
 #cat[data-cs="devil"] .pupil{fill:#ff3b3b}#cat[data-cs="devil"] .eC path{stroke:#ff3b3b}
+@media (max-width:760px),(pointer:coarse){
+.card,.empty,button,select,input[type="text"],.bar,dialog{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+.card{background:color-mix(in srgb,var(--card) 80%,var(--bg));animation-name:rise!important}
+.bar{background:color-mix(in srgb,var(--bg) 94%,var(--card))}
+.fog{filter:none;animation:none}
+h1{animation:shine 8s linear infinite;filter:drop-shadow(0 0 8px rgba(255,138,43,.35))}
+.ghost,.bat svg,.spider svg{filter:none}
+.pt{box-shadow:none}.pt:nth-of-type(2n){display:none}
+.moon{box-shadow:0 0 30px 8px rgba(255,214,120,.25)}
+[data-theme="dark"] body:before{display:none}
+.sc .pt,.sc .bat,.sc .ghost,.sc .spider,.sc .fog,.sc h1{animation-play-state:paused}
+}
 </style></head><body>
 <div class="bg-blobs"><div class="b1"></div><div class="b2"></div></div>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="gh" viewBox="0 0 24 28"><path d="M12 1C6 1 3 6 3 12v15l3-3 3 3 3-3 3 3 3-3 3 3V12C21 6 18 1 12 1z" fill="#fff"/><circle cx="9" cy="12" r="2" fill="#2a1840"/><circle cx="15" cy="12" r="2" fill="#2a1840"/><ellipse cx="12" cy="17" rx="2" ry="2.5" fill="#2a1840"/></symbol><symbol id="sp" viewBox="0 0 24 24"><circle cx="12" cy="13" r="5"/><circle cx="12" cy="8" r="3"/><path d="M8 11L2 7M8 13L1 13M8 15L2 20M9 17L5 23M16 11L22 7M16 13L23 13M16 15L22 20M15 17L19 23" fill="none" stroke-width="1.5"/></symbol><symbol id="wb" viewBox="0 0 120 120"><g stroke="currentColor" fill="none" stroke-width="1"><path d="M0 0L120 0M0 0L108 44M0 0L84 84M0 0L44 108M0 0L0 120"/><path d="M30 0Q26 26 0 30M60 0Q52 52 0 60M90 0Q78 78 0 90"/></g></symbol></svg>
@@ -586,10 +598,10 @@ function meow(shocked=false,fast=false){
   if(fast){for(let k=0;k<3;k++){t=t0+k*.2;v(.16,[450,250],[1500,300],"sine",2,0,.5,0,0,ac.destination)}return}
   if(shocked){hiss(.35,.45);t=t0+.22;v(.4,[700,1150,480],[1800,3300,1500],"sawtooth",5,18,.4,1.03,0);return}
   const cs=c.dataset.cs;
-  if(cs=="witch"){[0,.15,.3].forEach((o,i)=>{t=t0+o;v(.14,[b*(1.3+i*.25),b*(1.7+i*.25)],[2200,3200],"sawtooth",5,16,.28,1.02,0)});return}
+  if(cs=="witch"){v(.6,[b*1.1,b*1.5,b*1.25],[900,1400,900],"triangle",1,3,.2,0,0);return}
   if(cs=="ghost"){v(1.2,[b*1.2,b*1.9,b*1.1],[1200,2600,1000],"sine",2,22,.3,1.01,0);return}
   if(cs=="vamp"){v(.75,[b*.9,b*1.1,b*.7],[700,1100,650],"triangle",2,4,.22,0,0);return}
-  if(cs=="mummy"){v(.95,[b*.6,b*.7,b*.45],[500,800,450],"sawtooth",5,10,.3,1.02,1);return}
+  if(cs=="mummy"){v(.85,[b*.8,b*.95,b*.62],[550,800,500],"triangle",1,3,.2,0,0);return}
   if(cs=="pump"){[0,.4].forEach((o,i)=>{t=t0+o;v(.35,[b*(.9+i*.2),b*(1.2+i*.2),b*.8],[600,1000,600],"triangle",6,6,.4,0,0)});return}
   if(cs=="skel"){[0,.13,.26].forEach((o,i)=>{t=t0+o;v(.09,[950-i*120,620-i*80],[1500,900],"sine",1,0,.2,0,0)});t=t0+.45;v(.35,[b*1.2,b*1.4,b*1.0],[1000,1600,900],"triangle",2,0,.2,0,0);return}
   if(cs=="devil"){v(.65,[b*.55,b*.6,b*.5],[500,700,450],"triangle",2,6,.26,0,1);t=t0+.7;v(.2,[b*1.5,b*1.2],[1400,1100],"sine",2,0,.14,0,0);return}
@@ -667,13 +679,8 @@ $("cp").onclick=async()=>{
 $("grid").addEventListener("click",e=>{
  const fbtn = e.target.closest(".fav-btn");
  if(fbtn){
-   e.stopPropagation(); 
-   const id = fbtn.dataset.n;
-   if(favs.includes(id)) {
-     favs = favs.filter(x => x !== id);
-   } else {
-     favs.push(id);
-   }
+   e.stopPropagation(); const n = fbtn.dataset.n;
+   if(favs.includes(n)) favs = favs.filter(x=>x!==n); else favs.push(n);
    try{localStorage.setItem('mk-favs', JSON.stringify(favs));}catch(err){}
    fbtn.classList.toggle('on');
    if(cur==='Favs') render();
@@ -705,6 +712,7 @@ setTimeout(spawnBat,1200);setInterval(spawnBat,5200)}
 function go(e){if(e)e.stopPropagation();const n=O[(O.indexOf(c.dataset.cs)+1)%O.length];c.dataset.cs=n;B.textContent="Costume: "+L[n];try{localStorage.setItem("mk-cs",n)}catch(x){}if(window.catSay)catSay(M[n]);if(window.mkMeow)mkMeow()}
 try{const v=localStorage.getItem("mk-cs");if(O.includes(v)){c.dataset.cs=v;B.textContent="Costume: "+L[v]}}catch(x){}
 window.mkEM={witch:["🧙","🔮","🧹"],ghost:["👻","💨"],vamp:["🦇","🩸"],mummy:["🩹","🧻"],pump:["🎃","🍬"],skel:["💀","🦴"],devil:["😈","🔥"]};B.onclick=()=>go()})();
+let st;addEventListener("scroll",()=>{document.documentElement.classList.add("sc");clearTimeout(st);st=setTimeout(()=>document.documentElement.classList.remove("sc"),160)},{passive:true});
 (()=>{let cx,out;window.creepy=function(){if(window.mkSoundOn&&!mkSoundOn())return;try{cx=cx||new(window.AudioContext||window.webkitAudioContext)();if(cx.state=="suspended")cx.resume();
 if(!out){out=cx.createGain();out.gain.value=.8;const dl=cx.createDelay(),fb=cx.createGain(),wt=cx.createGain();dl.delayTime.value=.28;fb.gain.value=.45;wt.gain.value=.4;out.connect(cx.destination);out.connect(dl);dl.connect(fb);fb.connect(dl);dl.connect(wt);wt.connect(cx.destination)}
 const t=cx.currentTime,o=cx.createOscillator(),o2=cx.createOscillator(),g=cx.createGain(),l=cx.createOscillator(),lg=cx.createGain(),b=520+Math.random()*180;
